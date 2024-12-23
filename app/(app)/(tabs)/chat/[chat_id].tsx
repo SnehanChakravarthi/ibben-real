@@ -2,13 +2,13 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import { useLocalSearchParams } from 'expo-router';
 
-const Property = () => {
-  const { id } = useLocalSearchParams();
+const Chat = () => {
+  const { chat_id } = useLocalSearchParams();
   return (
     <View>
-      <Text>Property {id}</Text>
+      <Text>chat ID: {chat_id}</Text>
     </View>
   );
 };
 
-export default Property;
+export default Chat;
