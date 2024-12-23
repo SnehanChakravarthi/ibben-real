@@ -7,6 +7,10 @@ import whiteGradient from '@/assets/images/white-gradient.png';
 import map from '@/assets/images/map.png';
 import noResult from '@/assets/images/no-result.png';
 import onboarding from '@/assets/images/onboarding.png';
+import ibbenLogo from '@/assets/iben-images/logo-icon.png';
+import ibbenLogoTransparent from '@/assets/iben-images/logo-icon-2.png';
+import ibbenLogoFull from '@/assets/iben-images/logo-full.png';
+import ibbenOnboarding from '@/assets/iben-images/girl-smiling-bg.jpg';
 
 export default {
   onboarding,
@@ -18,4 +22,8 @@ export default {
   whiteGradient,
   map,
   noResult,
+  ibbenLogo,
+  ibbenLogoTransparent,
+  ibbenLogoFull,
+  ibbenOnboarding,
 };

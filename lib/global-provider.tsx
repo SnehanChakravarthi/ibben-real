@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 import { useAppwrite } from './useAppwrite';
 import { getCurrentUser } from './appwrite';
 
@@ -22,6 +22,10 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   const { data: user, loading, refetch } = useAppwrite({ fn: getCurrentUser });
 
   const isLoggedIn = !!user;
+
+  useEffect(() => {
+    console.log('GlobalProvider updated:', { isLoggedIn, user });
+  }, [isLoggedIn, user]);
 
   return (
     <GlobalContext.Provider value={{ isLoggedIn, user, loading, refetch }}>

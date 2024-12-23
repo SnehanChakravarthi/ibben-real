@@ -9,6 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import React from 'react';
+import { router } from 'expo-router';
 import icons from '@/constants/icons';
 import { settings } from '@/constants/data';
 import { useGlobalContext } from '@/lib/global-provider';
@@ -45,13 +46,18 @@ const SettingsItem = ({
 
 const Profile = () => {
   const { user, refetch } = useGlobalContext();
+
   const handleLogout = async () => {
-    const result = await logout();
-    if (result) {
-      Alert.alert('Success', 'Logout successful');
-      refetch();
-    } else {
-      Alert.alert('Error', 'Logout failed');
+    try {
+      const result = await logout();
+      if (result) {
+        Alert.alert('Success', 'Logout successful');
+        refetch();
+      } else {
+        Alert.alert('Error', 'Logout failed');
+      }
+    } catch (error) {
+      Alert.alert('Error', 'An error occurred during logout');
     }
   };
 

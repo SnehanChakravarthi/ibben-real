@@ -26,7 +26,17 @@ export default function RootLayout() {
 
   return (
     <GlobalProvider>
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" options={{ animation: 'fade' }} />
+        <Stack.Screen
+          name="(auth)/sign-in"
+          options={{ animation: 'fade', animationDuration: 300 }}
+        />
+        <Stack.Screen
+          name="(auth)/sign-up"
+          options={{ animation: 'fade', animationDuration: 300 }}
+        />
+      </Stack>
     </GlobalProvider>
   );
 }

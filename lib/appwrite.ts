@@ -1,19 +1,18 @@
-import { Account, Client, Avatars, OAuthProvider } from 'react-native-appwrite';
+import {
+  Account,
+  Client,
+  Avatars,
+  OAuthProvider,
+  ID,
+} from 'react-native-appwrite';
 import * as Linking from 'expo-linking';
 import { openAuthSessionAsync } from 'expo-web-browser';
 
 export const config = {
-  platform: 'com.jsm.restate',
+  platform: 'com.iml.ibben',
   endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!,
   project: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID!,
 };
-
-console.log('Environment Variables:', {
-  raw_endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT,
-  raw_project: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
-});
-
-console.log('Appwrite Config:', config);
 
 export const client = new Client();
 
@@ -25,7 +24,33 @@ client
 export const avatar = new Avatars(client);
 export const account = new Account(client);
 
-export async function login() {
+export async function loginWithEmail(email: string, password: string) {
+  try {
+    const session = await account.createEmailPasswordSession(email, password);
+    if (!session) throw new Error('Failed to login');
+    return session;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
+
+export async function signUpWithEmail(
+  email: string,
+  password: string,
+  name: string
+) {
+  try {
+    const user = await account.create(ID.unique(), email, password, name);
+    if (!user) throw new Error('Failed to sign up');
+    return user;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
+
+export async function loginWithGoogle() {
   try {
     const redirectUri = Linking.createURL('/');
 
